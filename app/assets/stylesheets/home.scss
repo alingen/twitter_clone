@@ -50,6 +50,15 @@ form input[type="submit"] {
   background-color: #f5f8fa;
 }
 
+.main-format {
+  max-width: 600px;
+  margin: 30px auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  clear: both;
+  background-color: #f5f8fa;
+}
+
 //top-----------------------
 
 body {
@@ -96,15 +105,6 @@ header {
 }
 
 // twee-timelineの部分----------------
-
-.main-format {
-  max-width: 600px;
-  margin: 30px auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  clear: both;
-  background-color: #f5f8fa;
-}
 
 .tweet-index-item {
   padding: 20px 30px;
@@ -166,7 +166,7 @@ header {
   }
 }
 
-.tweet-user-name {
+.tweet-user-name a{
   float: left;
   width: 80%;
   padding-top: 10px;
@@ -174,6 +174,7 @@ header {
   text-align: left;
   color: #fff;
   font-size: 20px;
+  overflow: hidden; 
 }
 
 .tweet-do {
@@ -215,19 +216,4 @@ header {
   }
 }
 
-// .login {
-//   width: 150px;
-//   height: 40px;
-//   background-color: #4DD65A;
-//   margin: 0 auto;
-//   border-radius: 5%;
-
-//   li {
-//     font-size: 20px;
-//     text-align: center;
-//     color: black;
-//     text-align: center;
-//     color: white;
-//   }
-// }
 

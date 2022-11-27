@@ -13,7 +13,7 @@ header
     - 10.times
       .tweet-index-item
         .post-left
-          img src="user_images/twittericon13.jpeg"
+          = image_tag "user_images/twittericon13.jpeg"
         .post-right 
           .post-user-name IKE
           | あああああああああああああああああああ
@@ -21,10 +21,9 @@ header
   -if current_user
     .tweet-menu
       .tweet-user-image 
-        img src="user_images/twittericon13.jpeg"
+        = image_tag "user_images/twittericon13.jpeg"
       .tweet-user-name
-        = current_user.name 
-        | さん
+        = link_to current_user.name, "/users/#{current_user.id}"
       .tweet-do 
         p つぶやく
     
