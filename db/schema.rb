@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_27_141358) do
+ActiveRecord::Schema.define(version: 2022_11_28_074224) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "tweet_id", null: false
+    t.text "text", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.string "user_id", null: false
