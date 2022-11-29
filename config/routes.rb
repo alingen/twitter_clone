@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'comments/:id/show' => 'comments#show'
   get 'comments/:id/new' => 'comments#new'
-  post 'comments/create' => 'comments#create'
+  post 'comments/:id/create' => 'comments#create'
+
+  post 'users/:id/update' => 'users#update'
 
   devise_for :users
   get '/' => 'home#top'

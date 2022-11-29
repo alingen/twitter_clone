@@ -13,11 +13,19 @@ header
     - if current_user.id = params[:id].to_i
       = link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }
 
-.main 
+.main
   .main-format
     .user-profile
       .user-profile-image
-        = image_tag "user_images/twittericon13.jpeg"
+        = form_with url: "/users/#{@user.id}/update", local: true do |f|
+          = f.label :image
+            = f.file_field :image, style:"display:none;"
+            - if @user.image.attached?
+              = image_tag @user.image
+            - else
+              = image_tag "user_images/twittericon13.jpeg"
+            = f.submit
+
       .profile-edit
         = link_to 'プロフィールを編集', edit_user_registration_path
 
