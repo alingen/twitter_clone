@@ -17,7 +17,7 @@ header
   .main-format
     .user-profile
       .user-profile-image
-        = form_with url: "/users/#{@user.id}/update", local: true do |f|
+        = form_with url: user_update_path, local: true do |f|
           = f.label :image
             = f.file_field :image, style:"display:none;", onchange: "submit(this.form)"
             - if @user.image.attached?

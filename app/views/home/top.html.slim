@@ -17,7 +17,7 @@ header
         .post-right 
           .post-user-name 
             = tweet.user.name
-          = link_to  tweet.text,"/comments/#{tweet.id}"
+          = link_to  tweet.text, comment_show_path
 
   -if current_user
     .tweet-menu

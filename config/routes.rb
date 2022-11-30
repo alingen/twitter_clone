@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'comments/:id' => 'comments#show'
+  get 'comments/:id' => 'comments#show', as:'comment_show'
   get 'comments/:id/new' => 'comments#new'
-  post 'comments/:id/create' => 'comments#create'
+  post 'comments/:id/create' => 'comments#create', as: 'comment_create'
 
-  post 'users/:id/update' => 'users#update'
+  post 'users/:id/update' => 'users#update', as: 'user_update'
 
   get '/' => 'home#top'
 
