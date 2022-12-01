@@ -1,9 +1,10 @@
 class TweetsController < ApplicationController
   def new
+    @tweet = Tweet.new
   end
 
   def create
-    @tweet = current_user.tweets.build(user_id: current_user.id, text: params[:text])
+    @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
       flash[:notice] = "投稿を作成しました"
       redirect_to root_path
@@ -11,5 +12,11 @@ class TweetsController < ApplicationController
       render("tweets/new")
     end
   end
+
+  private
+    
+    def tweet_params
+      params.require(:tweet).permit(:text)
+    end
 
 end
