@@ -2,7 +2,6 @@ body
 header
   .header-top
     h1 Happiness Chain
-  / = link_to 'Happiness Chain', 
   .nav-menu
     li 検索
     - if current_user
@@ -17,8 +16,14 @@ header
         .post-right 
           .post-user-name 
             = tweet.user.name
-          = link_to  tweet.text, comment_show_path
-
+          = link_to  tweet.text, "comments/#{tweet.id}" 
+          .like
+            - if Like.find_by(user_id: current_user.id, tweet_id: tweet.id)
+              = link_to "/likes/#{tweet.id}/destroy", {method:"post"} do
+                span class="fa fa-heart liked-btn"
+            - else 
+              = link_to "/likes/#{tweet.id}/create", {method:"post"} do
+                span class="fa fa-heart unliked-btn"
 
   -if current_user
     .tweet-menu
