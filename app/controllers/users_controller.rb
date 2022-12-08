@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
- 
+  before_action :set_user
+
   def withdrawal
     current_user.update(is_deleted: true)
     reset_session
@@ -8,14 +9,27 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.new(id: params[:id])
+    @tweets = Tweet.order(created_at: :desc).where(user_id: params[:id])
+  end
+
+  def reply
+    @tweets = @user.tweet_and_reply
+  end
+
+
+  def likes
+    @likes = Like.where(user_id: params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     @user.image = params[:image]
     @user.save
     redirect_to @user
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
