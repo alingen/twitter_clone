@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def show
-    @tweet = Tweet.find_by(id: params[:id])
+    @tweet = Tweet.find(params[:id])
     @comments = Comment.where(tweet_id: @tweet.id)
   end
 
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(user_id: current_user.id, tweet_id: params[:id], text: params[:text])
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:notice] = "投稿を作成しました"
       redirect_to comment_path
@@ -16,4 +16,11 @@ class CommentsController < ApplicationController
       render("tweets/new")
     end
   end
+
+  private
+    
+    def comment_params
+      params.permit(:text).merge(tweet_id: params[:id])
+    end
+
 end

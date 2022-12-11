@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  get 'comments/:id/new' => 'comments#new'
-  post 'comments/:id/create' => 'comments#create'
+  get 'comments/:id/new' => 'comments#new', as: 'comment_new'
+  post 'comments/:id/create' => 'comments#create', as: 'comment_create'
 
   devise_for :users
   root to: 'home#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
 
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    member do
+      patch :withdrawal
+    end
+  end
   resources :tweets
   resources :comments
 end

@@ -4,7 +4,7 @@ header
 
 .main 
   .main-format 
-    = form_with url: "/comments/#{params[:id]}/create" do |f|
+    = form_with url: comment_create_path do |f|
       .tweet-form
         .tweet-form-body
           = f.text_area :text 
