@@ -43,7 +43,7 @@
           .reply.message
             p 返信先:@#{tweet.user.name}さん
           .post-left
-            - if tweet.user.image.attached?
+            - if @user.image.attached?
               = image_tag @user.image
             - else
               = image_tag "user_images/twittericon13.jpeg"
