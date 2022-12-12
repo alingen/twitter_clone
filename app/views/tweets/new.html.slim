@@ -1,0 +1,12 @@
+header
+  .header-top
+    h1 新しいツイート
+
+.main 
+  .main-format 
+    = form_with model: @tweet do |f|
+      .tweet-form
+        .tweet-form-body
+          = f.text_area :text 
+          = f.submit '投稿'
+    
