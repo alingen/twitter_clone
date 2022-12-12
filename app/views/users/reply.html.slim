@@ -1,0 +1,54 @@
+= render partial: 'form', locals: {user: @user}
+
+.main
+  .main-format
+    .user-profile
+      .user-profile-image
+        = form_with url: user_update_path, local: true do |f|
+          = f.label :image
+            = f.file_field :image, style:"display:none;", onchange: "submit(this.form)"
+            - if @user.image.attached?
+              = image_tag @user.image
+            - else
+              = image_tag "user_images/twittericon13.jpeg"
+
+      .profile-edit
+        = link_to 'プロフィールを編集', edit_user_registration_path
+
+      h4
+        = current_user.name
+      p
+        = current_user.introduction
+
+    ul.user-tabs 
+      li 
+        = link_to 'ツイート', "/users/#{@user.id}"
+      li
+        = link_to 'ツイートと返信', user_reply_path
+      li 
+        = link_to 'いいね', user_likes_path
+    - @tweets.each do |tweet|
+      .tweet-index-item
+        - if tweet.user_id == @user.id
+          .post-left
+            - if tweet.user.image.attached?
+              = image_tag @user.image
+            - else
+              = image_tag "user_images/twittericon13.jpeg"
+          .post-right
+            .post-user-name 
+              = @user.name
+            = link_to tweet.text, "/comments/#{tweet.id}"
+        - if tweet.comments_user_id == @user.id
+          .reply.message
+            p 返信先:@#{tweet.user.name}さん
+          .post-left
+            - if @user.image.attached?
+              = image_tag @user.image
+            - else
+              = image_tag "user_images/twittericon13.jpeg"
+          .post-right
+            .post-user-name 
+              = @user.name
+            = link_to tweet.comments_text, "/comments/#{tweet.id}"
+
